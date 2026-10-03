@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Roda Nama — Pemilih Acak</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@400;500;700&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <div class="wrap">
+    <header>
+      <h1>Roda Nama</h1>
+      <p>Pemilih acak untuk kelas, undian, rapat, dan keputusan sehari-hari. Masukkan nama, angka, hadiah, atau pilihan
+        apa pun, lalu putar.</p>
+    </header>
+
+    <div class="grid">
+      <div class="stage">
+        <div class="wheel-box">
+          <svg class="pointer" viewBox="0 0 34 44" aria-hidden="true">
+            <path d="M17 44 2 14A17 17 0 1 1 32 14Z" fill="#d4b06a" />
+            <circle cx="17" cy="15" r="5.5" fill="#0d0e13" />
+          </svg>
+          <canvas id="wheel" role="img" aria-label="Roda nama"></canvas>
+          <button class="hub" id="spin">PUTAR</button>
+        </div>
+      </div>
+
+      <div>
+        <section class="panel">
+          <h2>Daftar entri <span class="count" id="count"></span></h2>
+          <div class="chips">
+            <button class="chip" data-preset="kelas">Siswa kelas</button>
+            <button class="chip" data-preset="undian">Undian hadiah</button>
+            <button class="chip" data-preset="standup">Daily standup</button>
+            <button class="chip" data-preset="makan">Makan malam</button>
+          </div>
+          <textarea id="names" aria-label="Daftar nama, satu per baris" placeholder="Satu entri per baris"></textarea>
+          <div class="row">`
+            <button class="btn" id="shuffle">Acak urutan</button>
+            <button class="btn" id="sort">Urutkan A–Z</button>
+            <button class="btn" id="clear">Kosongkan</button>
+          </div>
+          <div class="opts">
+            <label><input type="checkbox" id="removeWinner"> Hapus pemenang dari roda setelah terpilih</label>
+            <label><input type="checkbox" id="sound" checked> Suara putaran</label>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Riwayat <button class="btn" id="clearHist" style="font-size:12px;padding:5px 10px">Hapus</button></h2>
+          <ol id="history"></ol>
+          <p class="empty" id="histEmpty">Belum ada hasil. Tekan Putar untuk memulai.</p>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <div class="overlay" id="overlay" role="dialog" aria-modal="true" aria-label="Pemenang">
+    <div class="modal">
+      <small>Terpilih</small>
+      <div class="winner" id="winnerName"></div>
+      <div class="row">
+        <button class="btn primary" id="again">Putar lagi</button>
+        <button class="btn" id="removeNow">Hapus dari roda</button>
+        <button class="btn" id="close">Tutup</button>
+      </div>
+    </div>
+  </div>
+  <canvas id="confetti"></canvas>
+
+  <script src="main.js"></script>
+</body>
+
+</html>
